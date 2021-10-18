@@ -1,0 +1,29 @@
+{
+    "development": {
+        "url" : "'mongodb://localhost/my_database'",
+        "username": "test",
+        "password": "123",
+        "database": "TEST",
+        "host": "192.168.10.166",
+        "port": 33094,
+        "dialect": "mongodb"
+    },
+    "test": {
+        "url" : "'mongodb://localhost/my_database'",
+        "username": "postgres",
+        "password": "password",
+        "database": "iLrn",
+        "host": "127.0.0.1",
+        "port": 5432,
+        "dialect": "postgres"
+    },
+    "production": {
+        "url" : "'mongodb://localhost/my_database'",
+        "username": "postgres",
+        "password": "password",
+        "database": "iLrn",
+        "host": "127.0.0.1",
+        "port": 5432,
+        "dialect": "postgres"
+    }
+  }
