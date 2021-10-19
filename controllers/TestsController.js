@@ -10,20 +10,20 @@ const requestHandler = new RequestHandler(logger);
 
 class TestsController {
 	
-	static async get(req, res) {
-		try {
-			// const reqParam = req.params.id;
-			// const schema = {
-			// 	id: Joi.number().integer().min(1),
-			// };
-			// const { error } = Joi.validate({ id: reqParam }, schema);
-			// requestHandler.validateJoi(error, 400, 'bad Request', 'invalid User Id');
+	static async index(req, res) {
 
-			// const result = await super.getById(req, 'Users');
-			return requestHandler.sendSuccess(res, 'User Data Extracted')({ user: 1 });
-		} catch (error) {
-			return requestHandler.sendError(req, res, error);
-		}
+	}
+
+	static async create(req, res) {
+
+	}
+
+	static async update(req, res) {
+
+	}
+
+	static async destroy(req, res) {
+
 	}
 
 }

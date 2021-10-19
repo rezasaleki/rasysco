@@ -13,18 +13,52 @@ class GoodsController {
 
     static async changeGoodsPrice(req, res) {
 		try {
-			// const reqParam = req.params.id;
-			// const schema = {
-			// 	id: Joi.number().integer().min(1),
-			// };
-			// const { error } = Joi.validate({ id: reqParam }, schema);
-			// requestHandler.validateJoi(error, 400, 'bad Request', 'invalid User Id');
-
-			// const result = await super.getById(req, 'Users');
-			return requestHandler.sendSuccess(res, 'User Data Extracted')({ id :req.params });
+			let { x, y } = req.params;
+			const Good = req.app.get('db').db.Good;
+			await GoodsController.updateOldPriceToNewPrice(await Good.find({}), x, y, Good);
+			return requestHandler.sendSuccess(res, 'User Data Extracted')({ listOfGoods :"ok" });
 		} catch (error) {
 			return requestHandler.sendError(req, res, error);
 		}
+	}
+
+	static async index(req, res) {
+
+	}
+
+	static async create(req, res) {
+
+		try {
+			const body = (req.body) ?? {};
+			const Good = req.app.get('db').db.Good;
+			const good = new Good({
+			 ... body
+			});
+			good.save(function (err) {
+			if (err) return handleError(err);
+				// saved!
+			});
+			return requestHandler.sendSuccess(res, 'Good Data Saved')({ good : "saved!" });
+		} catch(error) {
+			return requestHandler.sendError(req, res, error);
+		}
+
+	}
+
+	static async update(req, res) {
+
+	}
+
+	static async destroy(req, res) {
+
+	}
+
+	static async updateOldPriceToNewPrice(listOfGoods, oldPrice, newPrice, Good) {
+		await Good.update({},
+		{ $set: { "priceHistory.$[].PriceUnit" : newPrice } },
+		{
+		  multi: true,
+		});
 	}
     
 }

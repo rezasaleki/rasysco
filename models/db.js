@@ -5,10 +5,10 @@ mongoose.Promise = global.Promise;
 
 const db = {};
 db.mongoose = mongoose;
-
+// `mongodb://${config.username}:${config.password}@${config.host}:${config.port}/${config.database}`
 (async () => {
     await db.mongoose
-    .connect(`mongodb://${config.username}:${config.password}@${config.host}:${config.port}/${config.database}`, {
+    .connect(`mongodb://${config.host}:${config.port}/${config.database}`, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     })
@@ -21,7 +21,7 @@ db.mongoose = mongoose;
     });
 })();
 
-db.goods = require("./Good")(mongoose);
-db.business = require("./Busines")(mongoose);
+db.Good = require("./Good")(mongoose);
+db.Busines = require("./Busines")(mongoose);
 
 exports.db = db;

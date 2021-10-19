@@ -1,11 +1,11 @@
 {
     "development": {
         "url" : "'mongodb://localhost/my_database'",
-        "username": "test",
-        "password": "123",
+        "username": "",
+        "password": "",
         "database": "TEST",
-        "host": "192.168.10.166",
-        "port": 33094,
+        "host": "localhost",
+        "port": 27017,
         "dialect": "mongodb"
     },
     "test": {
