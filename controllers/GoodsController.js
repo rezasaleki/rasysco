@@ -8,15 +8,14 @@ const Logger = require('../utils/logger');
 const logger = new Logger();
 const requestHandler = new RequestHandler(logger);
 
-
 class GoodsController {
 
     static async changeGoodsPrice(req, res) {
 		try {
 			let { x, y } = req.params;
 			const Good = req.app.get('db').db.Good;
-			await GoodsController.updateOldPriceToNewPrice(await Good.find({}), x, y, Good);
-			return requestHandler.sendSuccess(res, 'User Data Extracted')({ listOfGoods :"ok" });
+			await GoodsController.updateOldPriceToNewPrice(x, y, Good);
+			return requestHandler.sendSuccess(res, 'Good Data Extracted')({ status :"updated!" });
 		} catch (error) {
 			return requestHandler.sendError(req, res, error);
 		}
@@ -53,7 +52,7 @@ class GoodsController {
 
 	}
 
-	static async updateOldPriceToNewPrice(listOfGoods, oldPrice, newPrice, Good) {
+	static async updateOldPriceToNewPrice(oldPrice, newPrice, Good) {
 		await Good.update({},
 		{ $set: { "priceHistory.$[].PriceUnit" : newPrice } },
 		{

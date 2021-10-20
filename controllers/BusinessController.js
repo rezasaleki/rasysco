@@ -31,7 +31,7 @@ class BusinessController {
 				}
 			]);
 
-			return requestHandler.sendSuccess(res, 'Busines Data Saved')({ listOfFillterGoods: await BusinessController.findMaxPriceUnit(listOfBusiness, req.params.x) });
+			return requestHandler.sendSuccess(res, 'Busines Data Listed')({ listOfFillterGoods: await BusinessController.findMaxPriceUnit(listOfBusiness, req.params.x) });
 		} catch (error) {
 			return requestHandler.sendError(req, res, error);
 		}
@@ -52,7 +52,7 @@ class BusinessController {
 			if (err) return handleError(err);
 				// saved!
 			});
-			return requestHandler.sendSuccess(res, 'User Data Extracted')({ busines : "saved!" });
+			return requestHandler.sendSuccess(res, 'Busines Data Created')({ status : "saved!" });
 		} catch(error) {
 			return requestHandler.sendError(req, res, error);
 		}
@@ -81,7 +81,5 @@ class BusinessController {
 		return listOfFillterGoods;
 	}
 }
-
-
 
 module.exports = BusinessController;
