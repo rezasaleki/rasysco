@@ -4,7 +4,7 @@ const { isAuthunticated } = require('../../utils/auth');
 const auth = require('../../utils/auth');
 
 router.get('/goodsPrice/:x', auth.isAuthunticated, BusinessController.getGoodsPrice);
-router.post('/create', isAuthunticated, BusinessController.create);
+router.post('/create', auth.isAuthunticated, BusinessController.create);
 
 module.exports = router;
 
